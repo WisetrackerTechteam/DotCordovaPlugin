@@ -6,7 +6,7 @@ cordova.define("kr.co.wisetracker.DotCordovaBridge", function(require, exports, 
 			var head= document.getElementsByTagName('head')[0];
 			var script= document.createElement('script');
 			script.type= 'text/javascript'; 
-			script.src = "./dop-native-sdk-inf.js";
+			script.src = "./ko.kr.wisetracker/www/dop-native-sdk-inf.js";
 			head.appendChild(script);
 		} catch (e) {
 			console.log(e);
