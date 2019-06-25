@@ -33,7 +33,7 @@
 - (void)setClick:(CDVInvokedUrlCommand*)command {
     NSString *clickName = [command.arguments objectAtIndex:0];
     Click *click = [[Click alloc] init];
-    click.clickName = clickName;
+   
     [DOT setClick:click];
     
 }
