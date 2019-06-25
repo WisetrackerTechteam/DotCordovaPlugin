@@ -1,0 +1,27 @@
+{
+ "name": "DotCordovaBridge",
+ "version": "0.0.1",
+ "description": "Wisetracker Cordova plugin For DOT",
+ "cordova": {
+   "id": "kr.co.wisetracker",
+   "platforms": [
+     "android",
+     "ios"
+   ]
+ },
+ "repository": {
+   "type": "git",
+   "url": "git+https://github.com/WisetrackerTechteam/DotCordovaPlugin.git"
+ },
+ "keywords": [
+   "ecosystem:cordova",
+   "cordova-android",
+   "cordova-ios"
+ ],
+ "author": "Wisetracker Techteam",
+ "license": "ISC",
+ "bugs": {
+   "url": "https://github.com/WisetrackerTechteam/DotCordovaPlugin/issues"
+ },
+ "homepage": "https://github.com/WisetrackerTechteam/DotCordovaPlugin#readme"
+}
