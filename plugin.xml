@@ -4,7 +4,7 @@
 	<js-module name="DotCordovaBridge" src="www/DotCordovaBridge.js">
 		<clobbers target="cordova.plugins.DotCordovaBridge" />
 	</js-module> 
-	<js-module name="dop-native-sdk-inf" src="www/dop-native-sdk-inf.js"></js-module>
+	<asset src="www/dop-native-sdk-inf.js"/>
     <platform name="android"> 
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="DotCordovaBridge">
@@ -83,4 +83,5 @@
 		<source-file src="src/ios/DOTSession.framework" />
 		<source-file src="src/ios/CouchbaseLite.framework" />
     </platform> 
+
 </plugin>
