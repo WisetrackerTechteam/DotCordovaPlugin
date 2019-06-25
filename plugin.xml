@@ -4,13 +4,13 @@
 	<js-module name="DotCordovaBridge" src="www/DotCordovaBridge.js">
 		<clobbers target="cordova.plugins.DotCordovaBridge" />
 	</js-module> 
-	<asset src="www/dop-native-sdk-inf.js"/>
+	<asset src="www/dop-native-sdk-inf.js" target="www/dop-native-sdk-inf.js"/> 
     <platform name="android"> 
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="DotCordovaBridge">
                 <param name="android-package" value="kr.co.wisetracker.tracker.DotCordovaBridgee" />
             </feature>
-        </config-file>
+        </config-file> 
 
         <config-file parent="/*" target="AndroidManifest.xml">
             <uses-permission android:name="android.permission.INTERNET" />
@@ -83,5 +83,4 @@
 		<source-file src="src/ios/DOTSession.framework" />
 		<source-file src="src/ios/CouchbaseLite.framework" />
     </platform> 
-
 </plugin>
