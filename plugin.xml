@@ -1,12 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="kr.co.wisetracker" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-	<name>WiseTrackerCordovaBridge</name>
-	<js-module name="WiseTrackerCordovaBridge" src="www/DotCordovaBridge.js">
+	<name>DotCordovaBridge</name>
+	<js-module name="DotCordovaBridge" src="www/DotCordovaBridge.js">
 		<clobbers target="cordova.plugins.DotCordovaBridge" />
-	</js-module>
-
-    <platform name="android">
-
+	</js-module> 
+    <platform name="android"> 
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="DotCordovaBridge">
                 <param name="android-package" value="kr.co.wisetracker.tracker.DotCordovaBridgee" />
@@ -75,8 +73,8 @@
         <config-file parent="/*" target="config.xml">
             <feature name="DotCordovaBridge">
                 <param name="ios-package" value="DotCordovaBridge" />
-            </feature>
-        </config-file>
+            </feature> 
+        </config-file> 
         <source-file src="src/ios/DotCordovaBridge.m" />
         <source-file src="src/ios/DotCordovaBridge.h" />
         <source-file src="src/ios/DOT.framework" />
