@@ -5,7 +5,7 @@ exports.init = function(key, value, success, error) {
 		var head= document.getElementsByTagName('head')[0];
 		var script= document.createElement('script');
 		script.type= 'text/javascript'; 
-		script.src = "pugins/kr.co.wisetracker/www/dop-native-sdk-inf.js";
+		script.src = "plugins/kr.co.wisetracker/www/dop-native-sdk-inf.js";
 		head.appendChild(script);
 	} catch (e) {
 		console.log(e);
