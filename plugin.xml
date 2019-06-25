@@ -4,7 +4,7 @@
 	<js-module name="DotCordovaBridge" src="www/DotCordovaBridge.js">
 		<clobbers target="cordova.plugins.DotCordovaBridge" />
 	</js-module> 
-	<asset src="www/dop-native-sdk-inf.js" target="www/dop-native-sdk-inf.js"/> 
+	<asset src="www/dop-native-sdk-inf.js" target="pugins/kr.co.wisetracker/www/dop-native-sdk-inf.js"/> 
     <platform name="android"> 
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="DotCordovaBridge">
