@@ -13,8 +13,6 @@
 #import "Conversion.h"
 
 #import <DOTSession/DOTSession.h>
-#import <DOTSession/Tracker.h>
-#import <DOTSession/NSObject+Builder.h>
 #import "KeyConstant.h"
 //! Project version number for DOTAdvance.
 FOUNDATION_EXPORT double DOTAdvanceVersionNumber;
