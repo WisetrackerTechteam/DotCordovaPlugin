@@ -80,5 +80,6 @@
         <source-file src="src/ios/DOT.framework" />
 		<source-file src="src/ios/DOX.framework" />
 		<source-file src="src/ios/DOTSession.framework" />
+		<source-file src="src/ios/CouchbaseLite.framework" />
     </platform> 
 </plugin>
