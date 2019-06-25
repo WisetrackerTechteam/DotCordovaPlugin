@@ -77,9 +77,10 @@
                 <param name="ios-package" value="DotCordovaBridge" />
             </feature>
         </config-file>
-        <source-file src="src/ios/DotCordovaBridge.m" />
-        <source-file src="src/ios/DotCordovaBridge.h" />
-        <source-file src="src/ios/Dot.framework" />
-    </platform>
-
+        <source-file src="src/ios/DOTBridge.m" />
+        <source-file src="src/ios/DOTBridge.h" />
+        <source-file src="src/ios/DOT.framework" />
+		<source-file src="src/ios/DOX.framework" />
+		<source-file src="src/ios/DOTSession.framework" />
+    </platform> 
 </plugin>

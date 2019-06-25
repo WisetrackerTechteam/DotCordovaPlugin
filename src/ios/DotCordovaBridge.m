@@ -5,9 +5,9 @@
 //  Created by Woncheol Heo on 2019. 1. 23..
 //
 
-#import "DOTBridge.h"
+#import "DotCordovaBridge.h"
 #import <DOT/DOT.h>
-@implementation WiseTrackerBridge
+@implementation DotCordovaBridge
 
 
 - (void)echo:(CDVInvokedUrlCommand*)command
