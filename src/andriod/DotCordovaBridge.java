@@ -1,4 +1,4 @@
-package kr.co.wisetracker.DotCordovaBridge;
+package kr.co.wisetracker.tracker;
 
 import android.content.Context;
 import android.text.TextUtils;

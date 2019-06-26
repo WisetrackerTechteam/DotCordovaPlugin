@@ -15,7 +15,7 @@
 
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="DotCordovaBridge">
-                <param name="android-package" value="kr.co.wisetracker.DotCordovaBridge" />
+                <param name="android-package" value="kr.co.wisetracker.tracker.DotCordovaBridge" />
             </feature>
         </config-file>
 
@@ -37,7 +37,7 @@
         </config-file>
 
         <source-file src="src/android/DotCordovaBridge.java"
-            target-dir="src/kr/co/wisetracker/DotCordovaBridge" />
+            target-dir="src/kr/co/wisetracker/tracker/DotCordovaBridge" />
         <framework custom="true" src="src/android/plugin.gradle" type="gradleReference" />
 
     </platform>
