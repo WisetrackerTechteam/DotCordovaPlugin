@@ -8,8 +8,8 @@
         <clobbers target="cordova.plugins.DotCordovaBridge" />
     </js-module>
 
-    <asset src="www/dop-native-sdk-inf.js"
-        target="plugins/kr.co.wisetracker/www/dop-native-sdk-inf.js" />
+    <!--<asset src="www/dop-native-sdk-inf.js"-->
+        <!--target="plugins/kr.co.wisetracker/www/dop-native-sdk-inf.js" />-->
 
     <platform name="android">
 
@@ -42,18 +42,18 @@
 
     </platform>
 
-    <platform name="ios">
-        <config-file parent="/*" target="config.xml">
-            <feature name="DotCordovaBridge">
-                <param name="ios-package" value="DotCordovaBridge" />
-            </feature>
-        </config-file>
-        <source-file src="src/ios/DotCordovaBridge.m" />
-        <source-file src="src/ios/DotCordovaBridge.h" />
-        <framework custom="true" embed="true" src="src/ios/DOT.framework" />
-        <framework custom="true" embed="true" src="src/ios/DOX.framework" />
-        <framework custom="true" embed="true" src="src/ios/DOTSession.framework" />
-        <framework custom="true" embed="true" src="src/ios/CouchbaseLite.framework" />
-    </platform>
+    <!--<platform name="ios">-->
+        <!--<config-file parent="/*" target="config.xml">-->
+            <!--<feature name="DotCordovaBridge">-->
+                <!--<param name="ios-package" value="DotCordovaBridge" />-->
+            <!--</feature>-->
+        <!--</config-file>-->
+        <!--<source-file src="src/ios/DotCordovaBridge.m" />-->
+        <!--<source-file src="src/ios/DotCordovaBridge.h" />-->
+        <!--<framework custom="true" embed="true" src="src/ios/DOT.framework" />-->
+        <!--<framework custom="true" embed="true" src="src/ios/DOX.framework" />-->
+        <!--<framework custom="true" embed="true" src="src/ios/DOTSession.framework" />-->
+        <!--<framework custom="true" embed="true" src="src/ios/CouchbaseLite.framework" />-->
+    <!--</platform>-->
 
 </plugin>
