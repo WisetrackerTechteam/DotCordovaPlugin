@@ -64,6 +64,7 @@ public class DotCordovaBridge extends CordovaPlugin {
                     BaseLogUtil.getInstance().d(TAG, "user is null");
                     return false;
                 }
+                BaseLogUtil.getInstance().d(TAG, "user data: " + new Gson().toJson(user));
                 DOT.setUser(user);
                 callbackContext.success("setUser success");
                 return true;
@@ -103,6 +104,7 @@ public class DotCordovaBridge extends CordovaPlugin {
                     BaseLogUtil.getInstance().d(TAG, "page is null");
                     return false;
                 }
+                BaseLogUtil.getInstance().d(TAG, "page data: " + new Gson().toJson(page));
                 DOT.setPage(page);
                 callbackContext.success("setPage success");
                 return true;
@@ -121,6 +123,7 @@ public class DotCordovaBridge extends CordovaPlugin {
                     BaseLogUtil.getInstance().d(TAG, "conversion is null");
                     return false;
                 }
+                BaseLogUtil.getInstance().d(TAG, "conversion data: " + new Gson().toJson(conversion));
                 DOT.setConversion(conversion);
                 callbackContext.success("setConversion success");
                 return true;
@@ -139,6 +142,7 @@ public class DotCordovaBridge extends CordovaPlugin {
                     BaseLogUtil.getInstance().d(TAG, "click is null");
                     return false;
                 }
+                BaseLogUtil.getInstance().d(TAG, "click data: " + new Gson().toJson(click));
                 DOT.setClick(click);
                 callbackContext.success("setClick success");
                 return true;
@@ -157,6 +161,7 @@ public class DotCordovaBridge extends CordovaPlugin {
                     BaseLogUtil.getInstance().d(TAG, "purchase is null");
                     return false;
                 }
+                BaseLogUtil.getInstance().d(TAG, "purchase data: " + new Gson().toJson(purchase));
                 DOT.setPurchase(purchase);
                 callbackContext.success("setPurchase success");
                 return true;
@@ -175,6 +180,11 @@ public class DotCordovaBridge extends CordovaPlugin {
                 BaseLogUtil.getInstance().d(TAG, "value: " + value);
                 BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
                 XIdentify xIdentify = new Gson().fromJson(json, XIdentify.class);
+                if (xIdentify == null) {
+                    BaseLogUtil.getInstance().d(TAG, "xIdentify is null");
+                    return false;
+                }
+                BaseLogUtil.getInstance().d(TAG, "xIdentify data: " + new Gson().toJson(xIdentify));
                 DOX.groupIdentify(key, value, xIdentify);
                 callbackContext.success("groupIdentify success");
                 return true;
@@ -189,6 +199,11 @@ public class DotCordovaBridge extends CordovaPlugin {
                 }
                 BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
                 XIdentify xIdentify = new Gson().fromJson(json, XIdentify.class);
+                if (xIdentify == null) {
+                    BaseLogUtil.getInstance().d(TAG, "xIdentify is null");
+                    return false;
+                }
+                BaseLogUtil.getInstance().d(TAG, "xIdentify data: " + new Gson().toJson(xIdentify));
                 DOX.userIdentify(xIdentify);
                 callbackContext.success("userIdentify success");
                 return true;
@@ -203,6 +218,11 @@ public class DotCordovaBridge extends CordovaPlugin {
                 }
                 BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
                 XEvent xEvent = new Gson().fromJson(json, XEvent.class);
+                if (xEvent == null) {
+                    BaseLogUtil.getInstance().d(TAG, "xEvent is null");
+                    return false;
+                }
+                BaseLogUtil.getInstance().d(TAG, "xEvent data: " + new Gson().toJson(xEvent));
                 DOX.logEvent(xEvent);
                 callbackContext.success("logEvent success");
                 return true;
@@ -217,6 +237,11 @@ public class DotCordovaBridge extends CordovaPlugin {
                 }
                 BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
                 XConversion xConversion = new Gson().fromJson(json, XConversion.class);
+                if (xConversion == null) {
+                    BaseLogUtil.getInstance().d(TAG, "xConversion is null");
+                    return false;
+                }
+                BaseLogUtil.getInstance().d(TAG, "xConversion data: " + new Gson().toJson(xConversion));
                 DOX.logConversion(xConversion);
                 callbackContext.success("logConversion success");
                 return true;
@@ -231,6 +256,11 @@ public class DotCordovaBridge extends CordovaPlugin {
                 }
                 BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
                 XRevenue xRevenue = new Gson().fromJson(json, XRevenue.class);
+                if (xRevenue == null) {
+                    BaseLogUtil.getInstance().d(TAG, "xRevenue is null");
+                    return false;
+                }
+                BaseLogUtil.getInstance().d(TAG, "xRevenue data: " + new Gson().toJson(xRevenue));
                 DOX.logRevenue(xRevenue);
                 callbackContext.success("logRevenue success");
                 return true;
