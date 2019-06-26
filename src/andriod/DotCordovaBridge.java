@@ -23,7 +23,7 @@ import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-public class WiseTrackerBridge extends CordovaPlugin {
+public class DotCordovaBridge extends CordovaPlugin {
 
     private final String TAG = "[CORDOVA]";
 
