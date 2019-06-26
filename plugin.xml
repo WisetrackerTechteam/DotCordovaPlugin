@@ -15,7 +15,7 @@
 
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="DotCordovaBridge">
-                <param name="android-package" value="kr.co.wisetracker.tracker.DotCordovaBridge" />
+                <param name="android-package" value="kr.co.wisetracker.DotCordovaBridge" />
             </feature>
         </config-file>
 
