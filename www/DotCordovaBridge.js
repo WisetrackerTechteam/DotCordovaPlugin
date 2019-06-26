@@ -18,5 +18,4 @@ exports.init = function(key, value, success, error) {
 	} catch (e) {
 		console.log(e);
 	}
-
 }
