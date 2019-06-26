@@ -1,67 +1,39 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="kr.co.wisetracker" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-	<name>DotCordovaBridge</name>
-	<js-module name="DotCordovaBridge" src="www/DotCordovaBridge.js">
-		<clobbers target="cordova.plugins.DotCordovaBridge" />
-	</js-module> 
-	<asset src="www/dop-native-sdk-inf.js" target="plugins/kr.co.wisetracker/www/dop-native-sdk-inf.js"/> 
-    <platform name="android"> 
+<plugin xmlns:android="http://schemas.android.com/apk/res/android" id="kr.co.wisetracker" version="0.0.1"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0">
+
+    <name>DotCordovaBridge</name>
+
+    <js-module name="DotCordovaBridge" src="www/DotCordovaBridge.js">
+        <clobbers target="cordova.plugins.DotCordovaBridge" />
+    </js-module>
+
+    <asset src="www/dop-native-sdk-inf.js"
+        target="plugins/kr.co.wisetracker/www/dop-native-sdk-inf.js" />
+
+    <platform name="android">
+
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="DotCordovaBridge">
-                <param name="android-package" value="kr.co.wisetracker.tracker.DotCordovaBridgee" />
+                <param name="android-package" value="kr.co.wisetracker.tracker.DotCordovaBridge" />
             </feature>
-        </config-file> 
+        </config-file>
 
         <config-file parent="/*" target="AndroidManifest.xml">
             <uses-permission android:name="android.permission.INTERNET" />
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-            <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
         </config-file>
 
         <config-file parent="/manifest/application" target="AndroidManifest.xml">
-
-            <receiver android:name="kr.co.wisetracker.insight.receiver.InsightReceiver"
+            <receiver android:name="com.sdk.wisetracker.base.tracker.receiver.ReferrerReceiver"
                 android:exported="true">
                 <intent-filter>
-                    <action android:name="android.intent.action.PACKAGE_ADDED" />
-                    <action android:name="android.intent.action.PACKAGE_CHANGED" />
-                    <action android:name="android.intent.action.PACKAGE_REPLACED" />
-                    <data android:scheme="package" />
-                </intent-filter>
-                <intent-filter>
-                    <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-                </intent-filter>
-                <intent-filter>
                     <action android:name="com.android.vending.INSTALL_REFERRER" />
-                </intent-filter>
-                <intent-filter android:exported="true">
-                    <action android:name="android.intent.action.BOOT_COMPLETED" />
+                    <action android:name="android.intent.action.PACKAGE_FIRST_LAUNCH" />
                 </intent-filter>
             </receiver>
-
-            <service android:name="kr.co.wisetracker.insight.job.WisetrackerJob"
-                android:exported="false">
-                <intent-filter>
-                    <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
-                </intent-filter>
-            </service>
-
-            <service android:name="kr.co.wisetracker.insight.service.InsightService"
-                android:enabled="true">
-                <intent-filter>
-                    <action
-                        android:name="kr.co.wisetracker.insight.lib.StaticValues.START_SERVICE" />
-                    <category android:name="android.intent.category.DEFAULT" />
-                </intent-filter>
-                <intent-filter>
-                    <action android:name="wisetracker.intent.action.ACTIVATE_ALARM" />
-                </intent-filter>
-                <intent-filter android:exported="false">
-                    <action android:name="SEND_ALARM" />
-                </intent-filter>
-            </service>
-
         </config-file>
 
         <source-file src="src/android/DotCordovaBridge.java"
@@ -74,13 +46,14 @@
         <config-file parent="/*" target="config.xml">
             <feature name="DotCordovaBridge">
                 <param name="ios-package" value="DotCordovaBridge" />
-            </feature> 
-        </config-file> 
-        <source-file src="src/ios/DotCordovaBridge.m"/>
-        <source-file src="src/ios/DotCordovaBridge.h"/>
-        <framework src="src/ios/DOT.framework" custom="true" embed="true"/>
-		<framework src="src/ios/DOX.framework"  custom="true" embed="true"/>
-		<framework src="src/ios/DOTSession.framework"  custom="true" embed="true"/>
-		<framework src="src/ios/CouchbaseLite.framework"  custom="true" embed="true"/>
-    </platform> 
+            </feature>
+        </config-file>
+        <source-file src="src/ios/DotCordovaBridge.m" />
+        <source-file src="src/ios/DotCordovaBridge.h" />
+        <framework custom="true" embed="true" src="src/ios/DOT.framework" />
+        <framework custom="true" embed="true" src="src/ios/DOX.framework" />
+        <framework custom="true" embed="true" src="src/ios/DOTSession.framework" />
+        <framework custom="true" embed="true" src="src/ios/CouchbaseLite.framework" />
+    </platform>
+
 </plugin>
