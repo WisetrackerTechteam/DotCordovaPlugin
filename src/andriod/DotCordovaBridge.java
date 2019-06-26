@@ -1,4 +1,4 @@
-package kr.co.wisetracker.tracker;
+package kr.co.wisetracker;
 
 import android.content.Context;
 import android.text.TextUtils;
