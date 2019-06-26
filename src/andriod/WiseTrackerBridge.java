@@ -1,4 +1,4 @@
-package kr.co.wisetracker.CordovaBridge;
+package kr.co.wisetracker.tracker;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -23,7 +23,7 @@ import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-public class CordovaBridge extends CordovaPlugin {
+public class WiseTrackerBridge extends CordovaPlugin {
 
     private final String TAG = "[CORDOVA]";
 
@@ -232,5 +232,6 @@ public class CordovaBridge extends CordovaPlugin {
         return false;
 
     }
+
 
 }

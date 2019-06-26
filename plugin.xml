@@ -14,8 +14,8 @@
     <platform name="android">
 
         <config-file parent="/*" target="res/xml/config.xml">
-            <feature name="CordovaBridge">
-                <param name="android-package" value="kr.co.wisetracker.CordovaBridge" />
+            <feature name="WiseTrackerBridge">
+                <param name="android-package" value="kr.co.wisetracker.tracker.WiseTrackerBridge" />
             </feature>
         </config-file>
 
@@ -36,8 +36,8 @@
             </receiver>
         </config-file>
 
-        <source-file src="src/android/CordovaBridge.java"
-            target-dir="src/kr/co/wisetracker/CordovaBridge" />
+        <source-file src="src/android/WiseTrackerBridge.java"
+            target-dir="src/kr/co/wisetracker/tracker/WiseTrackerBridge" />
         <framework custom="true" src="src/android/plugin.gradle" type="gradleReference" />
 
     </platform>
