@@ -37,7 +37,7 @@
         </config-file>
 
         <source-file src="src/android/DotCordovaBridge.java"
-            target-dir="src/android/kr/co/wisetracker" />
+            target-dir="src/kr/co/wisetracker" />
         <framework custom="true" src="src/android/plugin.gradle" type="gradleReference" />
 
     </platform>
