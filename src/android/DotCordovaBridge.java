@@ -105,6 +105,7 @@ public class DotCordovaBridge extends CordovaPlugin {
                     return false;
                 }
                 BaseLogUtil.getInstance().d(TAG, "page data: " + new Gson().toJson(page));
+                DOT.onStartPage(context);
                 DOT.setPage(page);
                 callbackContext.success("setPage success");
                 return true;
