@@ -16,7 +16,7 @@ import com.sdk.wisetracker.dox.open.api.DOX;
 import com.sdk.wisetracker.dox.open.model.XConversion;
 import com.sdk.wisetracker.dox.open.model.XEvent;
 import com.sdk.wisetracker.dox.open.model.XIdentify;
-import com.sdk.wisetracker.dox.open.model.XRevenue;
+import com.sdk.wisetracker.dox.open.model.XPurchase;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -247,23 +247,23 @@ public class DotCordovaBridge extends CordovaPlugin {
                 callbackContext.success("logConversion success");
                 return true;
 
-            } else if (action.equals("logRevenue")) {
+            } else if (action.equals("logPurchase")) {
 
-                BaseLogUtil.getInstance().d(TAG, "logRevenue");
+                BaseLogUtil.getInstance().d(TAG, "logPurchase");
                 String json = args.getString(0);
                 if (TextUtils.isEmpty(json)) {
                     BaseLogUtil.getInstance().d(TAG, "receive json data is null");
                     return false;
                 }
                 BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
-                XRevenue xRevenue = new Gson().fromJson(json, XRevenue.class);
-                if (xRevenue == null) {
-                    BaseLogUtil.getInstance().d(TAG, "xRevenue is null");
+                XPurchase xPurchase = new Gson().fromJson(json, XPurchase.class);
+                if (xPurchase == null) {
+                    BaseLogUtil.getInstance().d(TAG, "xPurchase is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "xRevenue data: " + new Gson().toJson(xRevenue));
-                DOX.logRevenue(xRevenue);
-                callbackContext.success("logRevenue success");
+                BaseLogUtil.getInstance().d(TAG, "xPurchase data: " + new Gson().toJson(xPurchase));
+                DOX.logPurchase(xPurchase);
+                callbackContext.success("logPurchase success");
                 return true;
 
             }
