@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.sdk.wisetracker.base.common.base.BaseLogUtil;
 import com.sdk.wisetracker.base.model.User;
 import com.sdk.wisetracker.dot.open.api.DOT;
@@ -16,12 +17,20 @@ import com.sdk.wisetracker.dox.open.api.DOX;
 import com.sdk.wisetracker.dox.open.model.XConversion;
 import com.sdk.wisetracker.dox.open.model.XEvent;
 import com.sdk.wisetracker.dox.open.model.XIdentify;
+import com.sdk.wisetracker.dox.open.model.XProduct;
+import com.sdk.wisetracker.dox.open.model.XProperties;
 import com.sdk.wisetracker.dox.open.model.XPurchase;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class DotCordovaBridge extends CordovaPlugin {
 
@@ -223,8 +232,9 @@ public class DotCordovaBridge extends CordovaPlugin {
                     BaseLogUtil.getInstance().d(TAG, "xEvent is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "xEvent data: " + new Gson().toJson(xEvent));
+                xEvent.setXProperties(getXProperties(json));
                 DOX.logEvent(xEvent);
+                BaseLogUtil.getInstance().d(TAG, "xEvent data: " + new Gson().toJson(xEvent));
                 callbackContext.success("logEvent success");
                 return true;
 
@@ -242,8 +252,9 @@ public class DotCordovaBridge extends CordovaPlugin {
                     BaseLogUtil.getInstance().d(TAG, "xConversion is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "xConversion data: " + new Gson().toJson(xConversion));
+                xConversion.setXProperties(getXProperties(json));
                 DOX.logConversion(xConversion);
+                BaseLogUtil.getInstance().d(TAG, "xConversion data: " + new Gson().toJson(xConversion));
                 callbackContext.success("logConversion success");
                 return true;
 
@@ -261,8 +272,10 @@ public class DotCordovaBridge extends CordovaPlugin {
                     BaseLogUtil.getInstance().d(TAG, "xPurchase is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "xPurchase data: " + new Gson().toJson(xPurchase));
+                xPurchase.setXProperties(getXProperties(json));
+                setProductXProperties(xPurchase, json);
                 DOX.logPurchase(xPurchase);
+                BaseLogUtil.getInstance().d(TAG, "xPurchase data: " + new Gson().toJson(xPurchase));
                 callbackContext.success("logPurchase success");
                 return true;
 
@@ -274,6 +287,69 @@ public class DotCordovaBridge extends CordovaPlugin {
 
         return false;
 
+    }
+
+    public void setProductXProperties(XPurchase xPurchase, String json) {
+
+        try {
+
+            List<XProduct> xProductList = xPurchase.getProductList();
+            if (xProductList == null || xProductList.isEmpty()) {
+                return;
+            }
+
+            List<XProperties> xPropertiesList = new ArrayList<>();
+            JSONObject jsonObject = new JSONObject(json);
+            if (jsonObject == null) {
+                return;
+            }
+
+            JSONArray jsonArray = jsonObject.getJSONArray("product");
+            if (jsonArray == null || jsonArray.length() == 0) {
+                return;
+            }
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject productObject = jsonArray.getJSONObject(i);
+                if (productObject == null) {
+                    continue;
+                }
+                XProperties xProperties = getXProperties((productObject.toString()));
+                if (xProperties == null) {
+                    continue;
+                }
+                xPropertiesList.add(xProperties);
+            }
+
+            for (int i = 0; i < xProductList.size(); i++) {
+                xProductList.get(i).setProperties(xPropertiesList.get(i));
+            }
+
+        } catch (Exception e) {
+            BaseLogUtil.getInstance().e("DoxJsController", "get product properties error !!", e);
+        }
+
+    }
+
+    public XProperties getXProperties(String json) {
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            String properties = jsonObject.get("properties").toString();
+            if (TextUtils.isEmpty(properties)) {
+                return null;
+            }
+            Type type = new TypeToken<Map<String, Object>>() {
+            }.getType();
+            Map<String, Object> propertiesMap = new Gson().fromJson(properties, type);
+            if (propertiesMap == null) {
+                return null;
+            }
+            XProperties xProperties = new XProperties(propertiesMap);
+            return xProperties;
+        } catch (Exception e) {
+            BaseLogUtil.getInstance().e("DoxJsController", "get properties error !!", e);
+        }
+        return null;
     }
 
 }
