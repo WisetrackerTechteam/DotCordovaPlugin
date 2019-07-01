@@ -335,18 +335,20 @@ public class DotCordovaBridge extends CordovaPlugin {
     public XProperties getXProperties(String json) {
         try {
             JSONObject jsonObject = new JSONObject(json);
-            String properties = jsonObject.get("properties").toString();
-            if (TextUtils.isEmpty(properties)) {
-                return null;
+            if (jsonObject.has("properties")) {
+                String properties = jsonObject.get("properties").toString();
+                if (TextUtils.isEmpty(properties)) {
+                    return null;
+                }
+                Type type = new TypeToken<Map<String, Object>>() {
+                }.getType();
+                Map<String, Object> propertiesMap = new Gson().fromJson(properties, type);
+                if (propertiesMap == null) {
+                    return null;
+                }
+                XProperties xProperties = new XProperties(propertiesMap);
+                return xProperties;
             }
-            Type type = new TypeToken<Map<String, Object>>() {
-            }.getType();
-            Map<String, Object> propertiesMap = new Gson().fromJson(properties, type);
-            if (propertiesMap == null) {
-                return null;
-            }
-            XProperties xProperties = new XProperties(propertiesMap);
-            return xProperties;
         } catch (Exception e) {
             BaseLogUtil.getInstance().e("DoxJsController", "get properties error !!", e);
         }
