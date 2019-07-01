@@ -29,6 +29,7 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -185,17 +186,38 @@ public class DotCordovaBridge extends CordovaPlugin {
                     return false;
                 }
                 JSONObject jsonObject = new JSONObject(json);
-                String key = jsonObject.get("key").toString();
-                String value = jsonObject.get("value").toString();
-                BaseLogUtil.getInstance().d(TAG, "key: " + key);
-                BaseLogUtil.getInstance().d(TAG, "value: " + value);
-                BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
-                XIdentify xIdentify = new Gson().fromJson(json, XIdentify.class);
-                if (xIdentify == null) {
-                    BaseLogUtil.getInstance().d(TAG, "xIdentify is null");
+                if (jsonObject == null) {
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "xIdentify data: " + new Gson().toJson(xIdentify));
+                BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
+
+                String key = null;
+                String value = null;
+                if (jsonObject.has("groups")) {
+                    String groups = jsonObject.get("groups").toString();
+                    Map<String, String> groupsMap = getGroups(groups);
+                    if (groupsMap != null) {
+                        Iterator iterator = groupsMap.keySet().iterator();
+                        while (iterator.hasNext()) {
+                            key = iterator.next().toString();
+                            value = groupsMap.get(key);
+                            BaseLogUtil.getInstance().d(TAG, "key: " + key);
+                            BaseLogUtil.getInstance().d(TAG, "value: " + value);
+                        }
+                    }
+                }
+
+                XIdentify xIdentify = null;
+                if (jsonObject.has("groupproperties")) {
+                    String xIdentifyJson = jsonObject.get("groupproperties").toString();
+                    xIdentify = new Gson().fromJson(xIdentifyJson, XIdentify.class);
+                    if (xIdentify == null) {
+                        BaseLogUtil.getInstance().d(TAG, "xIdentify is null");
+                        return false;
+                    }
+                    BaseLogUtil.getInstance().d(TAG, new Gson().toJson(xIdentify));
+                }
+
                 DOX.groupIdentify(key, value, xIdentify);
                 callbackContext.success("groupIdentify success");
                 return true;
@@ -290,7 +312,27 @@ public class DotCordovaBridge extends CordovaPlugin {
 
     }
 
-    public void setProductXProperties(XPurchase xPurchase, String json) {
+    private Map<String, String> getGroups(String groups) {
+
+        try {
+
+            Type type = new TypeToken<Map<String, String>>() {
+            }.getType();
+            Map<String, String> groupsMap = new Gson().fromJson(groups, type);
+            if (groupsMap == null) {
+                return null;
+            }
+            return groupsMap;
+
+        } catch (Exception e) {
+            BaseLogUtil.getInstance().e(TAG, "get groups error !!", e);
+        }
+
+        return null;
+
+    }
+
+    private void setProductXProperties(XPurchase xPurchase, String json) {
 
         try {
 
@@ -327,12 +369,12 @@ public class DotCordovaBridge extends CordovaPlugin {
             }
 
         } catch (Exception e) {
-            BaseLogUtil.getInstance().e("DoxJsController", "get product properties error !!", e);
+            BaseLogUtil.getInstance().e(TAG, "get product properties error !!", e);
         }
 
     }
 
-    public XProperties getXProperties(String json) {
+    private XProperties getXProperties(String json) {
         try {
             JSONObject jsonObject = new JSONObject(json);
             if (jsonObject.has("properties")) {
@@ -350,7 +392,7 @@ public class DotCordovaBridge extends CordovaPlugin {
                 return xProperties;
             }
         } catch (Exception e) {
-            BaseLogUtil.getInstance().e("DoxJsController", "get properties error !!", e);
+            BaseLogUtil.getInstance().e(TAG, "get properties error !!", e);
         }
         return null;
     }
