@@ -179,13 +179,14 @@ public class DotCordovaBridge extends CordovaPlugin {
             } else if (action.equals("groupIdentify")) {
 
                 BaseLogUtil.getInstance().d(TAG, "groupIdentify");
-                String key = args.getString(0);
-                String value = args.getString(1);
-                String json = args.getString(2);
+                String json = args.getString(0);
                 if (TextUtils.isEmpty(json)) {
                     BaseLogUtil.getInstance().d(TAG, "receive json data is null");
                     return false;
                 }
+                JSONObject jsonObject = new JSONObject(json);
+                String key = jsonObject.get("key").toString();
+                String value = jsonObject.get("value").toString();
                 BaseLogUtil.getInstance().d(TAG, "key: " + key);
                 BaseLogUtil.getInstance().d(TAG, "value: " + value);
                 BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
