@@ -4,7 +4,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.sdk.wisetracker.base:base_module_test:0.0.48'
-    implementation 'com.sdk.wisetracker.dot:dot_module_test:0.0.48'
-    implementation 'com.sdk.wisetracker.dox:dox_module_test:0.0.48'
+    implementation 'com.sdk.wisetracker.base:base_module_test:0.0.49'
+    implementation 'com.sdk.wisetracker.dot:dot_module_test:0.0.49'
+    implementation 'com.sdk.wisetracker.dox:dox_module_test:0.0.49'
 }
