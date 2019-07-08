@@ -16,7 +16,7 @@
 #import "XProduct.h"
 #import "XProperties.h"
 #import "XArray.h"
-#import "NSObject+XBuilder.h"
+
 //! Project version number for DOX.
 FOUNDATION_EXPORT double DOXVersionNumber;
 
@@ -41,5 +41,13 @@ FOUNDATION_EXPORT const unsigned char DOXVersionString[];
 //webview, wkWebView 사용함수
 + (void)setWebView:(UIWebView *)webView reqeust:(NSURLRequest *)request;
 + (void)setWkWebView:(WKWebView *)wkWebView reqeust:(NSURLRequest *)request;
+
+//unity 사용함수
++ (void)userIdentifyWith:(NSDictionary *)identify;
++ (void)groupIdentifyWith:(NSDictionary *)group identify:(NSDictionary *)identify;
++ (void)logEventWith:(NSDictionary *)event;
++ (void)logConversionWith:(NSDictionary *)conversion;
++ (void)logRevenueWith:(NSDictionary *)revenue;
+
 @end
 

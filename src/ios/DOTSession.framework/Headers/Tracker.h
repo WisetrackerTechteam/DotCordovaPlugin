@@ -14,7 +14,7 @@
   
 
 + (Tracker *)sharedInstance;
-- (void)initEnd;
+- (void)initEnd:(NSDictionary *)launchOptions;
 
 - (void)saveUserLoginInfo;
 - (void)setUserLogout;

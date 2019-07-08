@@ -38,8 +38,8 @@ FOUNDATION_EXPORT const unsigned char DOTVersionString[];
 @interface DOTSession : NSObject
 
 //SDK init함수
-+ (void)initialization;
-+ (void)initializationInterface;
++ (void)initialization:(NSDictionary *)lauchOptions;
++ (void)initializationInterface:(NSDictionary *)lauchOptions;
 
 //native 사용함수
 + (void)setUser:(User *)user;

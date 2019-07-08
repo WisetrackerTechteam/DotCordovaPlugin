@@ -43,5 +43,6 @@ FOUNDATION_EXPORT const unsigned char DOTAdvanceVersionString[];
 + (void)setWkWebView:(WKWebView *)wkWebView reqeust:(NSURLRequest *)request;
 + (void)onStartWebPage;
 + (void)onStopWebPage;
-
++ (void)setJavascriptInjectionInWebView:(UIWebView *)webView;
++ (void)setJavascriptInjectionInWkWebView:(WKWebView *)wkWebView;
 @end
