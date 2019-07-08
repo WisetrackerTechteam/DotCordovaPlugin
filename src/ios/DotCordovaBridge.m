@@ -37,6 +37,7 @@
     
     NSLog(@"clickDict : %@", clickDict);
     Click *click = [[Click alloc] init];
+
     [click setCkTp:[clickDict objectForKey:@"ckTp"]];
     [click setCkData:[clickDict objectForKey:@"ckData"]];
     
