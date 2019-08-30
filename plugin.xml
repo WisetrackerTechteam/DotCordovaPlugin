@@ -22,8 +22,6 @@
         <config-file parent="/*" target="AndroidManifest.xml">
             <uses-permission android:name="android.permission.INTERNET" />
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
         </config-file>
 
         <config-file parent="/manifest/application" target="AndroidManifest.xml">
@@ -36,8 +34,29 @@
             </receiver>
         </config-file>
 
-        <source-file src="src/android/DotCordovaBridge.java"
-            target-dir="src/kr/co/wisetracker" />
+        <config-file>
+            <!--  딥링크 진입 액티비티 선언 -->
+            <activity android:name="kr.co.wisetracker.DeepLinkActivity"
+                android:launchMode="singleTop">
+                <intent-filter>
+                    <action android:name="android.intent.action.VIEW" />
+                    <category android:name="android.intent.category.DEFAULT" />
+                    <category android:name="android.intent.category.BROWSABLE" />
+                    <!-- 딥링크로 진입될 스키마와 호스트 정보 입력 -->
+                    <data android:host="YOUR_HOST" android:scheme="YOUR_SCHEME" />
+                </intent-filter>
+            </activity>
+        </config-file>
+
+        <config-file>
+            <!-- true 변경시 Wisetracker 통한 인스톨 레퍼러 미수신 -->
+            <meta-data
+                android:name="disableDotReceiver"
+                android:value="false" />
+        </config-file>
+
+        <source-file src="src/android/DotCordovaBridge.java" target-dir="src/kr/co/wisetracker" />
+        <source-file src="src/android/DeepLinkActivity.java" target-dir="src/kr/co/wisetracker" />
         <framework custom="true" src="src/android/plugin.gradle" type="gradleReference" />
 
     </platform>
