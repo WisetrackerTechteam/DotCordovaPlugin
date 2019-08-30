@@ -166,10 +166,10 @@ var app = {
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
-		/*
-		** Wisetracker SDK 초기 설정 코드 적용 예시 
-		*/
-    cordova.plugins.DotCordovaBridge.init();
+	/*
+	** Wisetracker SDK 초기 설정 코드 적용 예시 
+	*/
+	cordova.plugins.DotCordovaBridge.init();
 		
     }
     
