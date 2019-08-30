@@ -68,8 +68,7 @@ xml/network_security_config 파일에 아래 내용 추가
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">www.wisetracker.co.kr</domain>
-        <domain includeSubdomains="true">trk.wisetracker.co.kr</domain>
+        <domain includeSubdomains="true">collector.naver.wisetracker.co.kr</domain>
     </domain-config>
 </network-security-config>
 ```
@@ -96,8 +95,8 @@ xml/network_security_config 파일에 아래 내용 추가
 ```xml
 <!-- true 변경시 Wisetracker 통한 인스톨 레퍼러 미수신 -->
 <meta-data 
-  	android:name="disableDotReceiver" 
-    android:value="false" />
+	android:name="disableDotReceiver" 
+	android:value="false" />
 ```
 
 #### 2.2 strings.xml 설정
