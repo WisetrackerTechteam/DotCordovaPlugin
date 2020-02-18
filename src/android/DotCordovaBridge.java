@@ -6,13 +6,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.sdk.wisetracker.base.common.base.BaseLogUtil;
-import com.sdk.wisetracker.base.model.User;
-import com.sdk.wisetracker.dot.open.api.DOT;
-import com.sdk.wisetracker.dot.open.model.Click;
-import com.sdk.wisetracker.dot.open.model.Conversion;
-import com.sdk.wisetracker.dot.open.model.Page;
-import com.sdk.wisetracker.dot.open.model.Purchase;
+import com.sdk.wisetracker.base.open.model.User;
+import com.sdk.wisetracker.base.tracker.common.WisetrackerLog;
 import com.sdk.wisetracker.dox.open.api.DOX;
 import com.sdk.wisetracker.dox.open.model.XConversion;
 import com.sdk.wisetracker.dox.open.model.XEvent;
@@ -20,6 +15,7 @@ import com.sdk.wisetracker.dox.open.model.XIdentify;
 import com.sdk.wisetracker.dox.open.model.XProduct;
 import com.sdk.wisetracker.dox.open.model.XProperties;
 import com.sdk.wisetracker.dox.open.model.XPurchase;
+import com.sdk.wisetracker.new_dot.open.DOT;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -46,150 +42,152 @@ public class DotCordovaBridge extends CordovaPlugin {
 
             if (action.equals("toast")) {
 
-                BaseLogUtil.getInstance().d(TAG, "toast test");
                 String message = args.getString(0);
-                BaseLogUtil.getInstance().d(TAG, "toast test message : " + message);
                 Toast.makeText(context, "cordova toast test\nmessage : " + message, Toast.LENGTH_SHORT).show();
                 callbackContext.success("toast success");
                 return true;
 
             } else if (action.equals("initialization")) {
 
-                BaseLogUtil.getInstance().d(TAG, "initialization");
+                WisetrackerLog.d(TAG, "initialization");
                 callbackContext.success("initialization success");
-                DOT.initialization(context);
+                //DOT.initialization(context);
                 return true;
 
             } else if (action.equals("setUser")) {
 
-                BaseLogUtil.getInstance().d(TAG, "setUser");
+                WisetrackerLog.d(TAG, "setUser");
                 String json = args.getString(0);
                 if (TextUtils.isEmpty(json)) {
-                    BaseLogUtil.getInstance().d(TAG, "receive json data is null");
+                    WisetrackerLog.d(TAG, "receive json data is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
+                WisetrackerLog.d(TAG, "raw data: " + json);
                 User user = new Gson().fromJson(json, User.class);
                 if (user == null) {
-                    BaseLogUtil.getInstance().d(TAG, "user is null");
+                    WisetrackerLog.d(TAG, "user is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "user data: " + new Gson().toJson(user));
+                WisetrackerLog.d(TAG, "user data: " + new Gson().toJson(user));
                 DOT.setUser(user);
                 callbackContext.success("setUser success");
                 return true;
 
             } else if (action.equals("setUserLogout")) {
 
-                BaseLogUtil.getInstance().d(TAG, "setUserLogout");
+                WisetrackerLog.d(TAG, "setUserLogout");
                 DOT.setUserLogout();
                 callbackContext.success("setUserLogout success");
                 return true;
 
             } else if (action.equals("onStartPage")) {
 
-                BaseLogUtil.getInstance().d(TAG, "onStartPage");
+                WisetrackerLog.d(TAG, "onStartPage");
                 DOT.onStartPage(context);
                 callbackContext.success("onStartPage success");
                 return true;
 
             } else if (action.equals("onStopPage")) {
 
-                BaseLogUtil.getInstance().d(TAG, "onStopPage");
+                WisetrackerLog.d(TAG, "onStopPage");
                 DOT.onStopPage(context);
                 callbackContext.success("onStopPage success");
                 return true;
 
-            } else if (action.equals("setPage")) {
+            } else if (action.equals("logScreen")) {
 
-                BaseLogUtil.getInstance().d(TAG, "setPage");
+                WisetrackerLog.d(TAG, "logScreen");
                 String json = args.getString(0);
                 if (TextUtils.isEmpty(json)) {
-                    BaseLogUtil.getInstance().d(TAG, "receive json data is null");
+                    WisetrackerLog.d(TAG, "page json is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
-                Page page = new Gson().fromJson(json, Page.class);
-                if (page == null) {
-                    BaseLogUtil.getInstance().d(TAG, "page is null");
+                WisetrackerLog.d(TAG, "page data: " + json);
+                Type type = new TypeToken<Map<String, Object>>() {
+                }.getType();
+                Map<String, Object> pageMap = new Gson().fromJson(json, type);
+                if (pageMap == null) {
+                    WisetrackerLog.d(TAG, "page map is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "page data: " + new Gson().toJson(page));
                 DOT.onStartPage(context);
-                DOT.setPage(page);
+                DOT.logScreen(pageMap);
                 callbackContext.success("setPage success");
                 return true;
 
-            } else if (action.equals("setConversion")) {
+            } else if (action.equals("logEvent")) {
 
-                BaseLogUtil.getInstance().d(TAG, "setConversion");
+                WisetrackerLog.d(TAG, "logEvent");
                 String json = args.getString(0);
                 if (TextUtils.isEmpty(json)) {
-                    BaseLogUtil.getInstance().d(TAG, "receive json data is null");
+                    WisetrackerLog.d(TAG, "conversion json is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
-                Conversion conversion = new Gson().fromJson(json, Conversion.class);
-                if (conversion == null) {
-                    BaseLogUtil.getInstance().d(TAG, "conversion is null");
+                WisetrackerLog.d(TAG, "conversion data: " + json);
+                Type type = new TypeToken<Map<String, Object>>() {
+                }.getType();
+                Map<String, Object> conversionMap = new Gson().fromJson(json, type);
+                if (conversionMap == null) {
+                    WisetrackerLog.d(TAG, "conversion map is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "conversion data: " + new Gson().toJson(conversion));
-                DOT.setConversion(conversion);
+                DOT.logEvent(conversionMap);
                 callbackContext.success("setConversion success");
                 return true;
 
-            } else if (action.equals("setClick")) {
+            } else if (action.equals("logClick")) {
 
-                BaseLogUtil.getInstance().d(TAG, "setClick");
+                WisetrackerLog.d(TAG, "logClick");
                 String json = args.getString(0);
                 if (TextUtils.isEmpty(json)) {
-                    BaseLogUtil.getInstance().d(TAG, "receive json data is null");
+                    WisetrackerLog.d(TAG, "click json is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
-                Click click = new Gson().fromJson(json, Click.class);
-                if (click == null) {
-                    BaseLogUtil.getInstance().d(TAG, "click is null");
+                WisetrackerLog.d(TAG, "click data: " + json);
+                Type type = new TypeToken<Map<String, Object>>() {
+                }.getType();
+                Map<String, Object> clickMap = new Gson().fromJson(json, type);
+                if (clickMap == null) {
+                    WisetrackerLog.d(TAG, "click map is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "click data: " + new Gson().toJson(click));
-                DOT.setClick(click);
+                DOT.logClick(clickMap);
                 callbackContext.success("setClick success");
                 return true;
 
-            } else if (action.equals("setPurchase")) {
+            } else if (action.equals("logPurchase")) {
 
-                BaseLogUtil.getInstance().d(TAG, "setPurchase");
+                WisetrackerLog.d(TAG, "logPurchase");
                 String json = args.getString(0);
                 if (TextUtils.isEmpty(json)) {
-                    BaseLogUtil.getInstance().d(TAG, "receive json data is null");
+                    WisetrackerLog.d(TAG, "purchase json is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
-                Purchase purchase = new Gson().fromJson(json, Purchase.class);
-                if (purchase == null) {
-                    BaseLogUtil.getInstance().d(TAG, "purchase is null");
+                WisetrackerLog.d(TAG, "purchase data: " + json);
+                Type type = new TypeToken<Map<String, Object>>() {
+                }.getType();
+                Map<String, Object> purchaseMap = new Gson().fromJson(json, type);
+                if (purchaseMap == null) {
+                    WisetrackerLog.d(TAG, "purchase map is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "purchase data: " + new Gson().toJson(purchase));
-                DOT.setPurchase(purchase);
+                DOT.logPurchase(purchaseMap);
                 callbackContext.success("setPurchase success");
                 return true;
 
             } else if (action.equals("groupIdentify")) {
 
-                BaseLogUtil.getInstance().d(TAG, "groupIdentify");
+                WisetrackerLog.d(TAG, "groupIdentify");
                 String json = args.getString(0);
                 if (TextUtils.isEmpty(json)) {
-                    BaseLogUtil.getInstance().d(TAG, "receive json data is null");
+                    WisetrackerLog.d(TAG, "receive json data is null");
                     return false;
                 }
                 JSONObject jsonObject = new JSONObject(json);
                 if (jsonObject == null) {
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
+                WisetrackerLog.d(TAG, "raw data: " + json);
 
                 String key = null;
                 String value = null;
@@ -201,8 +199,8 @@ public class DotCordovaBridge extends CordovaPlugin {
                         while (iterator.hasNext()) {
                             key = iterator.next().toString();
                             value = groupsMap.get(key);
-                            BaseLogUtil.getInstance().d(TAG, "key: " + key);
-                            BaseLogUtil.getInstance().d(TAG, "value: " + value);
+                            WisetrackerLog.d(TAG, "key: " + key);
+                            WisetrackerLog.d(TAG, "value: " + value);
                         }
                     }
                 }
@@ -212,10 +210,10 @@ public class DotCordovaBridge extends CordovaPlugin {
                     String xIdentifyJson = jsonObject.get("groupproperties").toString();
                     xIdentify = new Gson().fromJson(xIdentifyJson, XIdentify.class);
                     if (xIdentify == null) {
-                        BaseLogUtil.getInstance().d(TAG, "xIdentify is null");
+                        WisetrackerLog.d(TAG, "xIdentify is null");
                         return false;
                     }
-                    BaseLogUtil.getInstance().d(TAG, new Gson().toJson(xIdentify));
+                    WisetrackerLog.d(TAG, new Gson().toJson(xIdentify));
                 }
 
                 DOX.groupIdentify(key, value, xIdentify);
@@ -224,88 +222,88 @@ public class DotCordovaBridge extends CordovaPlugin {
 
             } else if (action.equals("userIdentify")) {
 
-                BaseLogUtil.getInstance().d(TAG, "userIdentify");
+                WisetrackerLog.d(TAG, "userIdentify");
                 String json = args.getString(0);
                 if (TextUtils.isEmpty(json)) {
-                    BaseLogUtil.getInstance().d(TAG, "receive json data is null");
+                    WisetrackerLog.d(TAG, "receive json data is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
+                WisetrackerLog.d(TAG, "raw data: " + json);
                 XIdentify xIdentify = new Gson().fromJson(json, XIdentify.class);
                 if (xIdentify == null) {
-                    BaseLogUtil.getInstance().d(TAG, "xIdentify is null");
+                    WisetrackerLog.d(TAG, "xIdentify is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "xIdentify data: " + new Gson().toJson(xIdentify));
+                WisetrackerLog.d(TAG, "xIdentify data: " + new Gson().toJson(xIdentify));
                 DOX.userIdentify(xIdentify);
                 callbackContext.success("userIdentify success");
                 return true;
 
-            } else if (action.equals("logEvent")) {
+            } else if (action.equals("logXEvent")) {
 
-                BaseLogUtil.getInstance().d(TAG, "logEvent");
+                WisetrackerLog.d(TAG, "logEvent");
                 String json = args.getString(0);
                 if (TextUtils.isEmpty(json)) {
-                    BaseLogUtil.getInstance().d(TAG, "receive json data is null");
+                    WisetrackerLog.d(TAG, "receive json data is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
+                WisetrackerLog.d(TAG, "raw data: " + json);
                 XEvent xEvent = new Gson().fromJson(json, XEvent.class);
                 if (xEvent == null) {
-                    BaseLogUtil.getInstance().d(TAG, "xEvent is null");
+                    WisetrackerLog.d(TAG, "xEvent is null");
                     return false;
                 }
                 xEvent.setXProperties(getXProperties(json));
                 DOX.logEvent(xEvent);
-                BaseLogUtil.getInstance().d(TAG, "xEvent data: " + new Gson().toJson(xEvent));
+                WisetrackerLog.d(TAG, "xEvent data: " + new Gson().toJson(xEvent));
                 callbackContext.success("logEvent success");
                 return true;
 
-            } else if (action.equals("logConversion")) {
+            } else if (action.equals("logXConversion")) {
 
-                BaseLogUtil.getInstance().d(TAG, "logConversion");
+                WisetrackerLog.d(TAG, "logConversion");
                 String json = args.getString(0);
                 if (TextUtils.isEmpty(json)) {
-                    BaseLogUtil.getInstance().d(TAG, "receive json data is null");
+                    WisetrackerLog.d(TAG, "receive json data is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
+                WisetrackerLog.d(TAG, "raw data: " + json);
                 XConversion xConversion = new Gson().fromJson(json, XConversion.class);
                 if (xConversion == null) {
-                    BaseLogUtil.getInstance().d(TAG, "xConversion is null");
+                    WisetrackerLog.d(TAG, "xConversion is null");
                     return false;
                 }
                 xConversion.setXProperties(getXProperties(json));
                 DOX.logConversion(xConversion);
-                BaseLogUtil.getInstance().d(TAG, "xConversion data: " + new Gson().toJson(xConversion));
+                WisetrackerLog.d(TAG, "xConversion data: " + new Gson().toJson(xConversion));
                 callbackContext.success("logConversion success");
                 return true;
 
-            } else if (action.equals("logPurchase")) {
+            } else if (action.equals("logXPurchase")) {
 
-                BaseLogUtil.getInstance().d(TAG, "logPurchase");
+                WisetrackerLog.d(TAG, "logPurchase");
                 String json = args.getString(0);
                 if (TextUtils.isEmpty(json)) {
-                    BaseLogUtil.getInstance().d(TAG, "receive json data is null");
+                    WisetrackerLog.d(TAG, "receive json data is null");
                     return false;
                 }
-                BaseLogUtil.getInstance().d(TAG, "raw data: " + json);
+                WisetrackerLog.d(TAG, "raw data: " + json);
                 XPurchase xPurchase = new Gson().fromJson(json, XPurchase.class);
                 if (xPurchase == null) {
-                    BaseLogUtil.getInstance().d(TAG, "xPurchase is null");
+                    WisetrackerLog.d(TAG, "xPurchase is null");
                     return false;
                 }
                 xPurchase.setXProperties(getXProperties(json));
                 setProductXProperties(xPurchase, json);
                 DOX.logPurchase(xPurchase);
-                BaseLogUtil.getInstance().d(TAG, "xPurchase data: " + new Gson().toJson(xPurchase));
+                WisetrackerLog.d(TAG, "xPurchase data: " + new Gson().toJson(xPurchase));
                 callbackContext.success("logPurchase success");
                 return true;
 
             }
 
         } catch (Exception e) {
-            BaseLogUtil.getInstance().e(TAG, "get error !!", e);
+            WisetrackerLog.e(TAG, "get error !!", e);
         }
 
         return false;
@@ -325,7 +323,7 @@ public class DotCordovaBridge extends CordovaPlugin {
             return groupsMap;
 
         } catch (Exception e) {
-            BaseLogUtil.getInstance().e(TAG, "get groups error !!", e);
+            WisetrackerLog.e(TAG, "get groups error !!", e);
         }
 
         return null;
@@ -369,7 +367,7 @@ public class DotCordovaBridge extends CordovaPlugin {
             }
 
         } catch (Exception e) {
-            BaseLogUtil.getInstance().e(TAG, "get product properties error !!", e);
+            WisetrackerLog.e(TAG, "get product properties error !!", e);
         }
 
     }
@@ -392,7 +390,7 @@ public class DotCordovaBridge extends CordovaPlugin {
                 return xProperties;
             }
         } catch (Exception e) {
-            BaseLogUtil.getInstance().e(TAG, "get properties error !!", e);
+            WisetrackerLog.e(TAG, "get properties error !!", e);
         }
         return null;
     }
