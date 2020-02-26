@@ -110,7 +110,6 @@ public class DotCordovaBridge extends CordovaPlugin {
                     WisetrackerLog.d(TAG, "page map is null");
                     return false;
                 }
-                DOT.onStartPage(context);
                 DOT.logScreen(pageMap);
                 callbackContext.success("setPage success");
                 return true;
