@@ -50,7 +50,7 @@ public class DotCordovaBridge extends CordovaPlugin {
             } else if (action.equals("initialization")) {
 
                 WisetrackerLog.d(TAG, "initialization");
-                DOT.initialization(context);
+                //DOT.initialization(context);
                 callbackContext.success("initialization success");
                 return true;
 
