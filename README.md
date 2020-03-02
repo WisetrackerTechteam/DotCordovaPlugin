@@ -34,12 +34,12 @@ $ plugman install -d --platform ios --project [프로젝트경로]/platforms/ios
 #### 1.3 플러그인 설치 확인
 
 #### a) Android
-코르도바 프로젝트에 플러그인이 정상 다운로드되면 안드로이드 스튜디오를 통해 다음과 같이 플러그인 파일이 추가된 것을 확인할 수 있습니다.
+-> 코르도바 프로젝트에 플러그인이 정상 다운로드되면 안드로이드 스튜디오를 통해 다음과 같이 플러그인 파일이 추가된 것을 확인할 수 있습니다.
 
 ![](http://www.wisetracker.co.kr/wp-content/uploads/2019/04/aos-cordova-addfile.jpg)
 
 #### b) IOS
-코르도바 프로젝트에 플러그인이 정상 다운로드되면 X-code를 통해 다음과 같이 플러그인 파일이 추가된 것을 확인할 수 있습니다.
+-> 코르도바 프로젝트에 플러그인이 정상 다운로드되면 X-code를 통해 다음과 같이 플러그인 파일이 추가된 것을 확인할 수 있습니다.
 
 ![](http://www.wisetracker.co.kr/wp-content/uploads/2019/08/cordova_index.png)
 
@@ -48,12 +48,12 @@ $ plugman install -d --platform ios --project [프로젝트경로]/platforms/ios
 #### 2.1 AndroidManifest.xml 설정
 
 #### a) Http 통신 허용 설정
-코르도바 안드로이드 프로젝트의 **targetSdkVersion 28 이상**일 경우 http 통신 허용 설정을 해야 합니다.
+-> 코르도바 안드로이드 프로젝트의 **targetSdkVersion 28 이상**일 경우 http 통신 허용 설정을 해야 합니다.
 
 AndroidManifest.xml 파일의 <application 태그 안에 **android:networkSecurityConfig="@xml/network_security_config"** 내용을 추가해 주세요. (**network_security_config 파일이 없다면 생성**) 
 
 ```xml
-// AndroidManifest.xml
+<!-- AndroidManifest.xml -->
 <application
 	android:icon="@mipmap/ic_launcher"
 	android:label="@string/app_name"
@@ -61,7 +61,7 @@ AndroidManifest.xml 파일의 <application 태그 안에 **android:networkSecuri
 	android:theme="@style/AppTheme">
 ```
 
-xml/network_security_config 파일에 아래 내용 추가
+-> xml/network_security_config 파일에 아래 내용 추가
 
 ```xml
 <!-- app/res/xml/network_security_config.xml -->
@@ -73,7 +73,7 @@ xml/network_security_config 파일에 아래 내용 추가
 </network-security-config>
 ```
 #### b) 딥링크 설정
-딥링크로 진입할 android:scheme="YOUR_SCHEME" 스키마와 android:host="YOUR_HOST" 호스트를 설정해 주세요.
+-> 딥링크로 진입할 android:scheme="YOUR_SCHEME" 스키마와 android:host="YOUR_HOST" 호스트를 설정해 주세요.
 
 ```xml
 <!-- 예시는 wisetracker://wisetracker.co.kr 링크로 진입시 딥링크 분석이 가능하며, 사용될 값을 직접 수정해 주세요. -->
@@ -102,7 +102,7 @@ xml/network_security_config 파일에 아래 내용 추가
 #### 2.2 strings.xml 설정
 
 #### a) dotAuthorizationKey 설정
-안드로이드 코르도바 프로젝트의 app/res/values/strings.xml 파일에 제공받은 App Analytics Key 정보를 추가
+-> 안드로이드 코르도바 프로젝트의 app/res/values/strings.xml 파일에 제공받은 App Analytics Key 정보를 추가
 
 ```xml
 <!-- 예시는 샘플 코드이며, 관리자 페이지에서 직접 발급 받은 값을 적용해 주세요  -->
