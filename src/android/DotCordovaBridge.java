@@ -80,6 +80,26 @@ public class DotCordovaBridge extends CordovaPlugin {
                 callbackContext.success("setUserLogout success");
                 return true;
 
+            } else if (action.equals("onPlayStart")) {
+
+                WisetrackerLog.d(TAG, "onPlayStart");
+                String period = args.getString(0);
+                if (TextUtils.isEmpty(period)) {
+                    WisetrackerLog.d(TAG, "period is empty");
+                    DOT.onPlayStart(context);
+                } else {
+                    DOT.onPlayStart(context, period);
+                }
+                callbackContext.success("onPlayStart success");
+                return true;
+
+            } else if (action.equals("onPlayStop")) {
+
+                WisetrackerLog.d(TAG, "onPlayStop");
+                DOT.onPlayStop(context);
+                callbackContext.success("onPlayStop success");
+                return true;
+
             } else if (action.equals("onStartPage")) {
 
                 WisetrackerLog.d(TAG, "onStartPage");
