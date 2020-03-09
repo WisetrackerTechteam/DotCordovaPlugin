@@ -87,7 +87,7 @@ $ plugman install -d --platform ios --project [프로젝트경로]/platforms/ios
 </activity>
 ```
 
-##### a) 인스톨 레퍼러 활성화 여부 (필요시 설정)
+##### c) 인스톨 레퍼러 활성화 여부 (필요시 설정)
 
 ```xml
 <!-- true 변경시 Wisetracker 통한 인스톨 레퍼러 미수신 -->
