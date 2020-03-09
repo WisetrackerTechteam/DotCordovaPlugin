@@ -88,7 +88,12 @@ public class DotCordovaBridge extends CordovaPlugin {
                     WisetrackerLog.d(TAG, "period is empty");
                     DOT.onPlayStart(context);
                 } else {
-                    DOT.onPlayStart(context, period);
+                    try {
+                        DOT.onPlayStart(context, Integer.valueOf(period));
+                    } catch (Exception e) {
+                        DOT.onPlayStart(context);
+                        WisetrackerLog.e(TAG, "onPlayStart exception", e);
+                    }
                 }
                 callbackContext.success("onPlayStart success");
                 return true;
