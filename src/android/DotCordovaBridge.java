@@ -265,7 +265,7 @@ public class DotCordovaBridge extends CordovaPlugin {
 
             } else if (action.equals("logXEvent")) {
 
-                WisetrackerLog.d(TAG, "logEvent");
+                WisetrackerLog.d(TAG, "logXEvent");
                 String json = args.getString(0);
                 if (TextUtils.isEmpty(json)) {
                     WisetrackerLog.d(TAG, "receive json data is null");
@@ -278,14 +278,14 @@ public class DotCordovaBridge extends CordovaPlugin {
                     return false;
                 }
                 xEvent.setXProperties(getXProperties(json));
-                DOX.logEvent(xEvent);
+                DOX.logXEvent(xEvent);
                 WisetrackerLog.d(TAG, "xEvent data: " + new Gson().toJson(xEvent));
                 callbackContext.success("logEvent success");
                 return true;
 
             } else if (action.equals("logXConversion")) {
 
-                WisetrackerLog.d(TAG, "logConversion");
+                WisetrackerLog.d(TAG, "logXConversion");
                 String json = args.getString(0);
                 if (TextUtils.isEmpty(json)) {
                     WisetrackerLog.d(TAG, "receive json data is null");
@@ -298,14 +298,14 @@ public class DotCordovaBridge extends CordovaPlugin {
                     return false;
                 }
                 xConversion.setXProperties(getXProperties(json));
-                DOX.logConversion(xConversion);
+                DOX.logXConversion(xConversion);
                 WisetrackerLog.d(TAG, "xConversion data: " + new Gson().toJson(xConversion));
                 callbackContext.success("logConversion success");
                 return true;
 
             } else if (action.equals("logXPurchase")) {
 
-                WisetrackerLog.d(TAG, "logPurchase");
+                WisetrackerLog.d(TAG, "logXPurchase");
                 String json = args.getString(0);
                 if (TextUtils.isEmpty(json)) {
                     WisetrackerLog.d(TAG, "receive json data is null");
@@ -319,7 +319,7 @@ public class DotCordovaBridge extends CordovaPlugin {
                 }
                 xPurchase.setXProperties(getXProperties(json));
                 setProductXProperties(xPurchase, json);
-                DOX.logPurchase(xPurchase);
+                DOX.logXPurchase(xPurchase);
                 WisetrackerLog.d(TAG, "xPurchase data: " + new Gson().toJson(xPurchase));
                 callbackContext.success("logPurchase success");
                 return true;
