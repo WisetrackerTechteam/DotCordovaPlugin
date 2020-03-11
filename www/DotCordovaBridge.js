@@ -1,3 +1,4 @@
+cordova.define("kr.co.wisetracker.DotCordovaBridge", function(require, exports, module) {
 exports.init = function(key, value, success, error) {
 	window.WISETRACKER_SDK_ENV_CODE = 2; 
 	// script dynamic loading 
@@ -17,5 +18,6 @@ exports.init = function(key, value, success, error) {
 		
 	} catch (e) {
 		console.log(e);
-	}
+	} 
 }
+});

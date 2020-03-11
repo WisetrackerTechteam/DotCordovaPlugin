@@ -11,9 +11,17 @@
 #import "Click.h"
 #import "Page.h"
 #import "Conversion.h"
+#import "Push.h"
 
 #import <DOTSession/DOTSession.h>
 #import "KeyConstant.h"
+//Use UserNotifications with iOS 10+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
+#define IOS10PLUS 1
+#import <UserNotifications/UserNotifications.h>
+#endif
+
+
 //! Project version number for DOTAdvance.
 FOUNDATION_EXPORT double DOTAdvanceVersionNumber;
 
@@ -38,6 +46,9 @@ FOUNDATION_EXPORT const unsigned char DOTAdvanceVersionString[];
 + (void)enterForeground;
 + (void)enterBackground;
 
+//Push분석 함수
++ (void)setPushClick:(NSDictionary *)userInfo application:(UIApplication *)application;
+
 //webview, wkWebView 사용함수
 + (void)setWebView:(UIWebView *)webView reqeust:(NSURLRequest *)request;
 + (void)setWkWebView:(WKWebView *)wkWebView reqeust:(NSURLRequest *)request;
@@ -45,4 +56,17 @@ FOUNDATION_EXPORT const unsigned char DOTAdvanceVersionString[];
 + (void)onStopWebPage;
 + (void)setJavascriptInjectionInWebView:(UIWebView *)webView;
 + (void)setJavascriptInjectionInWkWebView:(WKWebView *)wkWebView;
+
+//RW New API
++ (void)logEvent:(NSMutableDictionary *)event;
++ (void)logClick:(NSMutableDictionary *)click;
++ (void)logPurchase:(NSMutableDictionary *)revenue;
++ (void)logScreen:(NSMutableDictionary *)screen;
+
+// iOS 10 only
+// Notification Service Extension
+#ifdef IOS10PLUS
++ (UNMutableNotificationContent*)didReceiveNotificationExtensionRequest:(UNNotificationRequest*)request withContent:(UNMutableNotificationContent*)replacementContent;
++ (UNMutableNotificationContent*)serviceExtensionTimeWillExpireRequest:(UNNotificationRequest*)request withContent:(UNMutableNotificationContent*)replacementContent;
+#endif
 @end

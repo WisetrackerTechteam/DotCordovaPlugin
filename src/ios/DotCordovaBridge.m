@@ -28,16 +28,55 @@
 }
 
 - (void)initialization:(CDVInvokedUrlCommand*)command  {
-    NSLog(@"initialization");
-    [DOT initialization:NULL];
+    [DOT initialization:nil application:nil];
+}
+
+- (void)logClick:(CDVInvokedUrlCommand*)command {
+    NSLog(@"logClick in cordova");
+    NSMutableDictionary *clickDict = [[NSMutableDictionary alloc] init];
+    clickDict = [command.arguments objectAtIndex:0];
+    
+    [DOT logClick:clickDict];
+}
+
+
+- (void)logScreen:(CDVInvokedUrlCommand*)command {
+    NSLog(@"logScreen in cordova");
+    NSMutableDictionary *screenDict = [[NSMutableDictionary alloc] init];
+    screenDict = [command.arguments objectAtIndex:0];
+    
+    [DOT logScreen:screenDict];
+}
+
+- (void)logEvent:(CDVInvokedUrlCommand*)command {
+    NSLog(@"logEvent in cordova");
+    NSMutableDictionary *eventDict = [[NSMutableDictionary alloc] init];
+    eventDict = [command.arguments objectAtIndex:0];
+    
+    [DOT logEvent:eventDict];
+}
+
+- (void)logPurchase:(CDVInvokedUrlCommand*)command {
+    NSMutableDictionary *purchaseDict = [[NSMutableDictionary alloc] init];
+    purchaseDict = [command.arguments objectAtIndex:0];
+    
+    [DOT logPurchase:purchaseDict];
+}
+
+- (void)onStartPage:(CDVInvokedUrlCommand*)command {
+    NSLog(@"onStartPage in cordova");
+    [DOT onStartWebPage];
+}
+
+- (void)onStopPage:(CDVInvokedUrlCommand*)command {
+    
 }
 
 - (void)setClick:(CDVInvokedUrlCommand*)command {
-    NSDictionary *clickDict = [command.arguments objectAtIndex:0];
+    NSDictionary *clickDict = [[command.arguments objectAtIndex:0] objectForKey:@"_data"];
     
     NSLog(@"clickDict : %@", clickDict);
     Click *click = [[Click alloc] init];
-
     [click setCkTp:[clickDict objectForKey:@"ckTp"]];
     [click setCkData:[clickDict objectForKey:@"ckData"]];
     
@@ -110,7 +149,7 @@
 }
 
 - (void)setConversion:(CDVInvokedUrlCommand*)command {
-    NSDictionary *conversionDict = [command.arguments objectAtIndex:0];
+    NSDictionary *conversionDict = [[command.arguments objectAtIndex:0] objectForKey:@"_data"];
     NSLog(@"conversionDict : %@", conversionDict);
     
     Conversion *conversion = [[Conversion alloc] init];
@@ -460,20 +499,12 @@
     
 }
 
-- (void)onStartPage:(CDVInvokedUrlCommand*)command {
-   
-}
-
-- (void)onStopPage:(CDVInvokedUrlCommand*)command {
-    
-}
-
-- (void)logEvent:(CDVInvokedUrlCommand*)command {
-    NSDictionary *eventDict = [command.arguments objectAtIndex:0];
-    NSLog(@"eventDict : %@", eventDict);
-    
-    [DOX logEventWith:eventDict];
-}
+//- (void)logEvent:(CDVInvokedUrlCommand*)command {
+//    NSDictionary *eventDict = [command.arguments objectAtIndex:0];
+//    NSLog(@"eventDict : %@", eventDict);
+//
+//    [DOX logEventWith:eventDict];
+//}
 
 - (void)logConversion:(CDVInvokedUrlCommand*)command {
     NSDictionary *conversionDict = [command.arguments objectAtIndex:0];

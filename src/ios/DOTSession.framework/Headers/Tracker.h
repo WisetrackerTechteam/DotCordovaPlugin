@@ -28,12 +28,12 @@
 - (void)setFacebookreferrerData:(NSURL *)fbURL;
 
 //Notification Info
-- (void)setPushId:(NSString *)pushId;
+//- (void)setPushId:(NSString *)pushId;
 - (void)saveDeviceToken:(NSString *)deviceToken;
-- (void)setPushTitle:(NSString *)pushTitle;
-- (void)setPushClickTime:(long long)pushCkTime;
-- (void)setPushPeriod:(NSInteger)pushPeriod;
-- (void)setPushClick:(NSDictionary *)userInfo;
+//- (void)setPushTitle:(NSString *)pushTitle;
+//- (void)setPushClickTime:(long long)pushCkTime;
+//- (void)setPushPeriod:(NSInteger)pushPeriod;
+//- (void)setPushClick:(NSDictionary *)userInfo;
 
 //WebTracker 호출함수
 - (BOOL)getDOTInitFlag;

@@ -38,8 +38,10 @@ FOUNDATION_EXPORT const unsigned char DOTVersionString[];
 @interface DOTSession : NSObject
 
 //SDK init함수
-+ (void)initialization:(NSDictionary *)lauchOptions;
-+ (void)initializationInterface:(NSDictionary *)lauchOptions;
+//+ (void)initialization:(NSDictionary *)lauchOptions;
+//+ (void)initializationInterface:(NSDictionary *)lauchOptions;
++ (void)initialization:(NSDictionary *)launchOptions application:(UIApplication *)application;
++ (void)initializationInterface:(NSDictionary *)launchOptions application:(UIApplication *)application;
 
 //native 사용함수
 + (void)setUser:(User *)user;
@@ -48,9 +50,9 @@ FOUNDATION_EXPORT const unsigned char DOTVersionString[];
 + (void)setInstallReferrer:(Referrer *)refferer;
 
 // 푸시 관련 함수
-+ (void)setPushId:(NSString *)pushId;
+//+ (void)setPushId:(NSString *)pushId;
 + (void)setPushToken:(NSString *)deviceToken;
-+ (void)setPushClick:(NSDictionary *)userInfo;
+//+ (void)setPushClick:(NSDictionary *)userInfo application:(UIApplication *)application;
 
 //서버전송 함수
 + (void)sendTransaction;
