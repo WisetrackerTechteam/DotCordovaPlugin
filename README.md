@@ -18,17 +18,17 @@ $ plugman –v
 ```
 
 #### 1.2 플러그인 다운로드
--> 터미널에서 아래의 명령어를 통해 코르도바 플러그인을 프로젝트에 다운로드 합니다.
+-> 터미널에서 해당 프로젝트 경로로 이동한 후 아래의 명령어를 통해 코르도바 플러그인을 설치합니다.
 
 #### a) Android
 
 ```node
-$ plugman install -d --platform android --project [프로젝트경로]/platforms/android --plugin https://github.com/WisetrackerTechteam/RW-cordova-package.git
+$ plugman install -d --platform android --project ./platforms/android --plugin https://github.com/WisetrackerTechteam/RW-cordova-package.git
 ```
 
 #### b) IOS
 ```node
-$ plugman install -d --platform ios --project [프로젝트경로]/platforms/ios --plugin https://github.com/WisetrackerTechteam/RW-cordova-package.git
+$ plugman install -d --platform ios --project ./platforms/ios --plugin https://github.com/WisetrackerTechteam/RW-cordova-package.git
 ```
 
 #### 1.3 플러그인 설치 확인
@@ -41,7 +41,7 @@ $ plugman install -d --platform ios --project [프로젝트경로]/platforms/ios
 #### b) IOS
 -> 코르도바 프로젝트에 플러그인이 정상 다운로드되면 X-code를 통해 다음과 같이 플러그인 파일이 추가된 것을 확인할 수 있습니다.
 
-![](http://www.wisetracker.co.kr/wp-content/uploads/2019/08/cordova_index.png)
+![](http://www.wisetracker.co.kr/wp-content/uploads/2020/03/RW-cordova-project.png)
 
 ### 2. Android 코르도바 플러그인 설정
 
@@ -170,10 +170,13 @@ http통신을 허용하기 위해 NSAppTransportSecurity 를 아래와 같이 �
 	</dict>
 ```
 ### 4. 플러그인 초기화
-코르도바 프로젝트에서 앱 시작시 가장 먼저 로드되는 .js 파일에 플러그인을 초기화하는 코드를 추가합니다.
+코르도바 프로젝트에서 앱 시작시 가장 먼저 로드되는 .js 파일에 플러그인을 초기화와 js Library injection하는 코드를 추가합니다.
 
 ```javascript
-cordova.plugins.WiseTrackerCordovaBridge.init(); 
+  if( document.location.href.indexOf("index.html")>=0){
+      cordova.plugins.DotCordovaBridge.init();
+  }
+  cordova.plugins.DotCordovaBridge.injecting();
 ```
 
 **샘플 코드는 index.js 기준으로 작성하였습니다. 적용 프로젝트에 맞게 적용해 주세요.**
@@ -204,13 +207,16 @@ var app = {
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
-	/*
-	** Wisetracker SDK 초기 설정 코드 적용 예시 
-	*/
-	cordova.plugins.DotCordovaBridge.init();
-		
-    }
-    
+        /*
+        ** Wisetracker SDK 초기 설정 코드 적용 예시 
+        */
+        if( document.location.href.indexOf("index.html")>=0){
+            cordova.plugins.DotCordovaBridge.init();
+        }
+        cordova.plugins.DotCordovaBridge.injecting();
+            
+        }
+        
 };
 
 app.initialize();
