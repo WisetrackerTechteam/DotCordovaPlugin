@@ -163,11 +163,11 @@ SDK를 적용해야 하는 앱 개발자는 이 값을 true로 설정하고, SDK
 http통신을 허용하기 위해 NSAppTransportSecurity 를 아래와 같이 추가합니다
 
 ```xml
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-    </dict>
-</dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 ```
 ### 4. 플러그인 초기화
 코르도바 프로젝트에서 앱 시작시 가장 먼저 로드되는 .js 파일에 플러그인을 초기화하는 코드를 추가합니다.
