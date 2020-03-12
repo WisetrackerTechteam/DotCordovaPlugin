@@ -31,6 +31,14 @@ $ plugman install -d --platform android --project ./platforms/android --plugin h
 $ plugman install -d --platform ios --project ./platforms/ios --plugin https://github.com/WisetrackerTechteam/RW-cordova-package.git
 ```
 
+#### c) 필수 플러그인
+- js Library 파일을 inject하기 위해 파일 경로를 가져올때 필요한 cordova-plugin-file 플러그인을 설치합니다.
+
+```node
+$ cordova plugin add cordova-plugin-file
+```
+
+
 #### 1.3 플러그인 설치 확인
 
 #### a) Android
@@ -41,7 +49,7 @@ $ plugman install -d --platform ios --project ./platforms/ios --plugin https://g
 #### b) IOS
 -> 코르도바 프로젝트에 플러그인이 정상 다운로드되면 X-code를 통해 다음과 같이 플러그인 파일이 추가된 것을 확인할 수 있습니다.
 
-![](http://www.wisetracker.co.kr/wp-content/uploads/2020/03/RW-cordova-project.png)
+![](http://www.wisetracker.co.kr/wp-content/uploads/2020/03/RW-cordova-path.png)
 
 ### 2. Android 코르도바 플러그인 설정
 
@@ -170,7 +178,7 @@ http통신을 허용하기 위해 NSAppTransportSecurity 를 아래와 같이 �
 	</dict>
 ```
 ### 4. 플러그인 초기화
-코르도바 프로젝트에서 앱 시작시 가장 먼저 로드되는 .js 파일에 플러그인을 초기화와 js Library injection하는 코드를 추가합니다.
+코르도바 프로젝트에서 앱 시작시 가장 먼저 로드되는 .js 파일에 플러그인 초기화와 js Library injection하는 코드를 추가합니다.
 
 ```javascript
   if( document.location.href.indexOf("index.html")>=0){
