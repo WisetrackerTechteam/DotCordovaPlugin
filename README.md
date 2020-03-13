@@ -213,7 +213,7 @@ var app = {
 	// SDK 초기화를 위해 최초 1회만 호출
         cordova.plugins.DotCordovaBridge.init();
 	// 이후 로드되는 모든 페이지에 injecting 함수 호출
-        cordova.plugins.DotCordovaBridge.injecting();
+        cordova.plugins.DotCordovaBridge.inject();
             
         }
         
