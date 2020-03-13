@@ -210,9 +210,9 @@ var app = {
         /*
         ** Wisetracker SDK 초기 설정 코드 적용 예시 
         */
-        if( document.location.href.indexOf("index.html")>=0){
-            cordova.plugins.DotCordovaBridge.init();
-        }
+	// SDK 초기화를 위해 최초 1회만 호출
+        cordova.plugins.DotCordovaBridge.init();
+	// 이후 로드되는 모든 페이지에 injecting 함수 호출
         cordova.plugins.DotCordovaBridge.injecting();
             
         }
