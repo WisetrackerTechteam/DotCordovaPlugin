@@ -170,14 +170,7 @@ http통신을 허용하기 위해 NSAppTransportSecurity 를 아래와 같이 �
 	</dict>
 ```
 ### 4. 플러그인 초기화
-코르도바 프로젝트에서 앱 시작시 가장 먼저 로드되는 .js 파일에 플러그인 초기화와 js Library injection하는 코드를 추가합니다.
-
-```javascript
-  if( document.location.href.indexOf("index.html")>=0){
-      cordova.plugins.DotCordovaBridge.init();
-  }
-  cordova.plugins.DotCordovaBridge.injecting();
-```
+코르도바 프로젝트에서 앱 시작시 가장 먼저 로드되는 .js 파일에 플러그인 초기화와 Library inject 하는 코드를 추가합니다.
 
 **샘플 코드는 index.js 기준으로 작성하였습니다. 적용 프로젝트에 맞게 적용해 주세요.**
 
