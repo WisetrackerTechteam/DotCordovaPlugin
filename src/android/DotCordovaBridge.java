@@ -49,8 +49,8 @@ public class DotCordovaBridge extends CordovaPlugin {
 
             } else if (action.equals("initialization")) {
 
+                DOT.open("Cordova");
                 WisetrackerLog.d(TAG, "initialization");
-                //DOT.initialization(context);
                 callbackContext.success("initialization success");
                 return true;
 
@@ -86,12 +86,12 @@ public class DotCordovaBridge extends CordovaPlugin {
                 String period = args.getString(0);
                 if (TextUtils.isEmpty(period)) {
                     WisetrackerLog.d(TAG, "period is empty");
-                    DOT.onPlayStart(context);
+                    DOT.onPlayStart();
                 } else {
                     try {
-                        DOT.onPlayStart(context, Integer.valueOf(period));
+                        DOT.onPlayStart(Integer.valueOf(period));
                     } catch (Exception e) {
-                        DOT.onPlayStart(context);
+                        DOT.onPlayStart();
                         WisetrackerLog.e(TAG, "onPlayStart exception", e);
                     }
                 }
@@ -101,21 +101,21 @@ public class DotCordovaBridge extends CordovaPlugin {
             } else if (action.equals("onPlayStop")) {
 
                 WisetrackerLog.d(TAG, "onPlayStop");
-                DOT.onPlayStop(context);
+                DOT.onPlayStop();
                 callbackContext.success("onPlayStop success");
                 return true;
 
             } else if (action.equals("onStartPage")) {
 
                 WisetrackerLog.d(TAG, "onStartPage");
-                DOT.onStartPage(context);
+                DOT.onStartPage(null);
                 callbackContext.success("onStartPage success");
                 return true;
 
             } else if (action.equals("onStopPage")) {
 
                 WisetrackerLog.d(TAG, "onStopPage");
-                DOT.onStopPage(context);
+                DOT.onStopPage();
                 callbackContext.success("onStopPage success");
                 return true;
 
