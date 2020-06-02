@@ -7,6 +7,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import com.sdk.wisetracker.new_dot.open.DOT;
 
+/**
+ * 플러그인에서 딥링크 사용시 SDK 호출 처리해주는 Activity
+ * 고객사 안드로이드 프로젝트의 AndroidManifest.xml 파일에 등록해놓은 스키마와 호스트 정보로 해당 Activity 진입시 SDK 호출 후 메인 화면으로 이동
+ */
 public class DeepLinkActivity extends Activity {
 
     @Override

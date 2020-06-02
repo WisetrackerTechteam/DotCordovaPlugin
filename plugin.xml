@@ -11,9 +11,11 @@
     <asset src="www/dop-native-sdk-inf.js"
         target="plugins/kr.co.wisetracker/www/dop-native-sdk-inf.js" />
 
+    <!-- Android 플러그인 설정 -->
     <platform name="android">
 
         <config-file parent="/*" target="res/xml/config.xml">
+            <!-- Bridge 설정 -->
             <feature name="DotCordovaBridge">
                 <param name="android-package" value="kr.co.wisetracker.DotCordovaBridge" />
             </feature>
@@ -24,6 +26,7 @@
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
         </config-file>
 
+        <!-- 플러그인 패키지 삽입시 고객사 안드로이드 프로젝트 AnroidManifest.xml 파일에 삽입되는 설정 파일-->
         <config-file parent="/manifest/application" target="AndroidManifest.xml">
 
             <!--  딥링크 진입 액티비티 선언 -->

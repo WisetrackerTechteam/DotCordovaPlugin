@@ -29,6 +29,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Cordova <-> Android 브릿지 클래스
+ * 브릿지를 통해 Cordova에서 넘어온 데이터를 Android SDK로 전달
+ */
 public class DotCordovaBridge extends CordovaPlugin {
 
     private final String TAG = "[CORDOVA]";
