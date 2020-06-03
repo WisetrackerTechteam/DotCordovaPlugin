@@ -10,8 +10,7 @@ https://github.com/WisetrackerTechteam/RW-cordova-android-plugin
 3. 플러그인 제공 파일
 
 1) plugin.xml
-- cordova 안드로이드 프로젝트의 AndroidManifest.xml 파일에 포함될 설정 내용
-- Native SDK의 AndroidManifest.xml 파일의 내용과 동일
+- cordova 안드로이드 프로젝트의 AndroidManifest.xml 파일에 포함될 사용자 정의 설정 내용
 
 2) android
 
