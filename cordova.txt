@@ -1,4 +1,4 @@
-RW Cocos2d-X 플러그인
+RW Cordova 플러그인
 
 1. 플러그인 저장소
 https://github.com/WisetrackerTechteam/RW-cordova-android-plugin
