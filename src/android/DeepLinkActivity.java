@@ -8,8 +8,8 @@ import android.util.Log;
 import com.sdk.wisetracker.new_dot.open.DOT;
 
 /**
- * 플러그인에서 딥링크 사용시 SDK 호출 처리해주는 Activity
- * 고객사 안드로이드 프로젝트의 AndroidManifest.xml 파일에 등록해놓은 스키마와 호스트 정보로 해당 Activity 진입시 SDK 호출 후 메인 화면으로 이동
+ * 고객사 cordova 프로젝트에서 딥링크 이용시 편리하게 Native SDK 호출이 가능하도록 하기 위해 제공하는 Activity
+ * 고객사에서 직접 딥링크로 오픈되는 Activity를 생성후 그 곳에서 SDK 태깅 해도 무방 (해당 Activity는 고객사 개발 편의를 위해 제공)
  */
 public class DeepLinkActivity extends Activity {
 

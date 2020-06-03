@@ -30,8 +30,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Cordova <-> Android 브릿지 클래스
- * 브릿지를 통해 Cordova에서 넘어온 데이터를 Android SDK로 전달
+ * cordova <-> cordova android 플러그인 브릿지 클래스
+ * cordova에서 넘어온 데이터를 통해 Natvie SDK 호출
  */
 public class DotCordovaBridge extends CordovaPlugin {
 
