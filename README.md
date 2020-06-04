@@ -138,7 +138,7 @@ info.plist 파일을 open할때 **list로 보기** 가 아니라 **source로 보
         <key>accessToken</key>
         <string></string>
         <key>domain</key>
-        <string>http://stg-app-wcs.naver.com</string>
+        <string>http://rw-collector-env.ap-northeast-2.elasticbeanstalk.com</string>
         <key>expireDate</key>
         <string>14</string>
         <key>isDebug</key>
