@@ -90,6 +90,8 @@
 @property (nonatomic) NSString *wtref;
 @property (nonatomic) long long wtclkTime;
 @property (nonatomic) NSString *isDrUpdate;
+@property (nonatomic) NSString *openDl;
+@property (nonatomic) NSString *latestGcmpid;
 
 //Referrer
 @property (nonatomic) NSString *its;
@@ -110,6 +112,7 @@
 @property (nonatomic) long long pushCkTime;
 @property (nonatomic) NSInteger pushPeriod;
 @property (nonatomic) NSString *pushTitle;
+@property (nonatomic) NSString *saveToken;
 
 //App Info
 @property (nonatomic) NSString *_wthst;

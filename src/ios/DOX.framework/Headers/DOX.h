@@ -27,7 +27,7 @@ FOUNDATION_EXPORT const unsigned char DOXVersionString[];
 
 @interface DOX : NSObject
 
-+ (void)initialization;
+//+ (void)initialization;
 + (void)setUserId:(NSString *)userId;
 + (void)setDeepLink:(NSString *)referrer;
 + (void)setPushId:(NSString *)pid;
@@ -38,9 +38,11 @@ FOUNDATION_EXPORT const unsigned char DOXVersionString[];
 + (void)logRevenue:(XRevenue *)revenue;
 + (void)changeKeyInSessionDataWith:(NSString *)oldKey newKey:(NSString *)newKey;
 
-//webview, wkWebView 사용함수
-+ (void)setWebView:(UIWebView *)webView reqeust:(NSURLRequest *)request;
+//wkWebView 사용함수
+//+ (void)setWebView:(UIWebView *)webView reqeust:(NSURLRequest *)request;
 + (void)setWkWebView:(WKWebView *)wkWebView reqeust:(NSURLRequest *)request;
+//+ (void)setJavascriptInjectionInWebView:(UIWebView *)webView;
++ (void)setJavascriptInjectionInWkWebView:(WKWebView *)wkWebView;
 
 //unity 사용함수
 + (void)userIdentifyWith:(NSDictionary *)identify;
@@ -48,6 +50,7 @@ FOUNDATION_EXPORT const unsigned char DOXVersionString[];
 + (void)logEventWith:(NSDictionary *)event;
 + (void)logConversionWith:(NSDictionary *)conversion;
 + (void)logRevenueWith:(NSDictionary *)revenue;
+
 
 @end
 

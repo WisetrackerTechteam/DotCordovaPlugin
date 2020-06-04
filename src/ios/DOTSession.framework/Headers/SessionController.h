@@ -59,7 +59,7 @@
 - (void)resetIrUpdate;
 - (void)resetDrUpdate;
 - (void)resetAidChange;
-
+- (void)resetOpenDl;
 
 @end
 
