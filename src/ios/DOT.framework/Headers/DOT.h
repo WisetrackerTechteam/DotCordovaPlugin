@@ -27,6 +27,10 @@ FOUNDATION_EXPORT const unsigned char DOTAdvanceVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <DOTAdvance/PublicHeader.h>
 
 
+#if __has_include(<RWInAppMessaging/RWInAppMessaging.h>)
+  #import <RWInAppMessaging/RWInAppMessaging.h>
+#endif
+
 @interface DOT : DOTSession
 @property (class) KeyConstant *Key;
 //SDK init함수
@@ -40,7 +44,7 @@ FOUNDATION_EXPORT const unsigned char DOTAdvanceVersionString[];
 
 // 생명주기 관련 함수
 + (void)onStartPage;
-+ (void)onStopPage;
+//+ (void)onStopPage;
 + (void)enterForeground;
 + (void)enterBackground;
 

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
 #import "SessionJson.h"
+#import "InternalCampaign.h"
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
 #define IOS10PLUS 1
@@ -49,9 +50,16 @@
 - (void)createEntireJson2;
 - (void)setPairingDataWithDictionary:(NSMutableDictionary *)pairingJsonDict;
 
-
 //DOT SDK 호출함수
 - (NSMutableDictionary *)getSessionData;
+
+//Internal Campaign Setting
+- (void)setInternalCampaign:(InternalCampaign *)ic;
+
+//IDFA 저장
+- (void)setIDFA:(NSString *)IDFAStr;
+
+- (NSDictionary *)getAttributedInfo;
 
 // iOS 10 only
 // Notification Service Extension

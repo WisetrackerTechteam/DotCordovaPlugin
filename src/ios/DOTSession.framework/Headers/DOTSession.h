@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 #import "Referrer.h"
+#import "InternalCampaign.h"
 #import "SessionJson.h"
 #import "SessionController.h"
 #import "Tracker.h"
@@ -26,6 +27,8 @@
 #import "NHNetAssociation.h"
 #import "NHNetworkClock.h"
 #import "NSDate+NetworkClock.h"
+#import "KeychainWrapper.h"
+
 //Use UserNotifications with iOS 10+
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
 #define IOS10PLUS 1
@@ -67,6 +70,14 @@ FOUNDATION_EXPORT const unsigned char DOTVersionString[];
 + (BOOL)getDOTSessionInitYN;
 + (BOOL)checkNewSession;
 
+//Internal Campaign Setting
++ (void)setInternalCampaign:(InternalCampaign *)ic;
+
+//IDFA 저장
++ (void)setIDFA:(NSString *)IDFAStr;
+
+//attribution Info 가져오기
++ (void)getAttributedInfo:(void (^)(NSDictionary *))callback;
 // iOS 10 only
 // Notification Service Extension
 //#ifdef IOS10PLUS

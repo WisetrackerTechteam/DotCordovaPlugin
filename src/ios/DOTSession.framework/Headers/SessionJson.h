@@ -23,6 +23,8 @@
 @property (nonatomic) NSString *mbl;
 @property (nonatomic) NSString *mbid;
 @property (nonatomic) NSString *isLogin;
+@property (nonatomic) NSString *loginTp;
+@property (nonatomic) NSString *signupTp;
 
 //접속환경
 @property (nonatomic) NSString *lng;
@@ -43,6 +45,8 @@
 
 //사용자 식별
 @property (nonatomic) NSString *advtId;
+@property (nonatomic) NSString *uptAfv;
+@property (nonatomic) NSString *keychainUUID;
 @property (nonatomic) NSString *imei;
 @property (nonatomic) NSString *vendorId;
 @property (nonatomic) NSString *uuid;
@@ -63,6 +67,7 @@
 @property (nonatomic) NSString *isWf;
 @property (nonatomic) NSString *isMf;
 @property (nonatomic) NSString *isWfUs;
+@property (nonatomic) NSInteger pageKey;
 
 //구매 이벤트 후 변경값
 @property (nonatomic) NSInteger udRvnc;
@@ -133,6 +138,46 @@
 //앱 광고
 @property (nonatomic) NSDictionary *sarInfo;
 
+//내부캠페인
+@property (nonatomic) NSString *inrc1;
+@property (nonatomic) long long inrcTime1;
+@property (nonatomic) NSInteger inrcDt1;
+
+@property (nonatomic) NSString *inrc2;
+@property (nonatomic) long long inrcTime2;
+@property (nonatomic) NSInteger inrcDt2;
+
+@property (nonatomic) NSString *inrc3;
+@property (nonatomic) long long inrcTime3;
+@property (nonatomic) NSInteger inrcDt3;
+
+@property (nonatomic) NSString *inrc4;
+@property (nonatomic) long long inrcTime4;
+@property (nonatomic) NSInteger inrcDt4;
+
+@property (nonatomic) NSString *inrc5;
+@property (nonatomic) long long inrcTime5;
+@property (nonatomic) NSInteger inrcDt5;
+
+@property (nonatomic) NSString *inrc6;
+@property (nonatomic) long long inrcTime6;
+@property (nonatomic) NSInteger inrcDt6;
+
+@property (nonatomic) NSString *inrc7;
+@property (nonatomic) long long inrcTime7;
+@property (nonatomic) NSInteger inrcDt7;
+
+@property (nonatomic) NSString *inrc8;
+@property (nonatomic) long long inrcTime8;
+@property (nonatomic) NSInteger inrcDt8;
+
+@property (nonatomic) NSString *inrc9;
+@property (nonatomic) long long inrcTime9;
+@property (nonatomic) NSInteger inrcDt9;
+
+@property (nonatomic) NSString *inrc10;
+@property (nonatomic) long long inrcTime10;
+@property (nonatomic) NSInteger inrcDt10;
 //네이버 wcslog pairing 분석항목
 //@property (nonatomic) NSString *nvr_nnb;
 //@property (nonatomic) NSString *nvr_nid_ses;
