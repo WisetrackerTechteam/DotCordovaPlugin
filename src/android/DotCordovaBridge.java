@@ -54,7 +54,8 @@ public class DotCordovaBridge extends CordovaPlugin {
             } else if (action.equals("initialization")) {
 
                 DOT.open("Cordova");
-                WiseLog.d("initialization");
+                DOT.initialization(this.cordova.getActivity());
+                WiseLog.d("new initialization");
                 callbackContext.success("initialization success");
                 return true;
 
