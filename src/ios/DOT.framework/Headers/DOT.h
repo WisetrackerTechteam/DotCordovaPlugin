@@ -27,10 +27,6 @@ FOUNDATION_EXPORT const unsigned char DOTAdvanceVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <DOTAdvance/PublicHeader.h>
 
 
-#if __has_include(<RWInAppMessaging/RWInAppMessaging.h>)
-  #import <RWInAppMessaging/RWInAppMessaging.h>
-#endif
-
 @interface DOT : DOTSession
 @property (class) KeyConstant *Key;
 //SDK init함수
@@ -64,5 +60,9 @@ FOUNDATION_EXPORT const unsigned char DOTAdvanceVersionString[];
 + (void)logClick:(NSMutableDictionary *)click;
 + (void)logPurchase:(NSMutableDictionary *)revenue;
 + (void)logScreen:(NSMutableDictionary *)screen;
+
+#ifdef IOS10PLUS
++ (UNMutableNotificationContent*)didReceiveNotificationExtensionRequest:(UNNotificationRequest*)request withContent:(UNMutableNotificationContent*)replacementContent API_AVAILABLE(ios(10.0)) API_AVAILABLE(ios(10.0));
+#endif
 
 @end

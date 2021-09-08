@@ -16,10 +16,11 @@
 #import <UserNotifications/UserNotifications.h>
 #endif
 
-@interface Tracker : NSObject
-  
+@interface Tracker : NSObject<WKNavigationDelegate, WKUIDelegate>
 
 + (Tracker *)sharedInstance;
++ (Tracker *)getSharedInstance;
+
 - (void)initEnd:(NSDictionary *)launchOptions;
 
 - (void)saveUserLoginInfo;
@@ -58,15 +59,13 @@
 
 //IDFA 저장
 - (void)setIDFA:(NSString *)IDFAStr;
+- (void)denyATT;
 
 - (NSDictionary *)getAttributedInfo;
 
-// iOS 10 only
-// Notification Service Extension
-//#ifdef IOS10PLUS
-//- (UNMutableNotificationContent*)didReceiveNotificationExtensionRequest:(UNNotificationRequest*)request withContent:(UNMutableNotificationContent*)replacementContent API_AVAILABLE(ios(10.0)) API_AVAILABLE(ios(10.0));
-//- (UNMutableNotificationContent*)serviceExtensionTimeWillExpireRequest:(UNNotificationRequest*)request withContent:(UNMutableNotificationContent*)replacementContent API_AVAILABLE(ios(10.0)) API_AVAILABLE(ios(10.0));
-//#endif
+- (void)setATTAuthorizationStatus:(NSInteger)authStatus;
 
+- (void)checkDebugMode:(BOOL)debugCheck;
+- (NSString *)parseAttributionLinkToGetDeeplinkUrl:(NSString *)attributionUrl;
 @end
 

@@ -118,7 +118,7 @@
 @property (nonatomic) NSInteger pushPeriod;
 @property (nonatomic) NSString *pushTitle;
 @property (nonatomic) NSString *saveToken;
-
+@property (nonatomic) long long pushExpiredTime;
 //App Info
 @property (nonatomic) NSString *_wthst;
 @property (nonatomic) NSInteger _wtno;
@@ -183,6 +183,18 @@
 //@property (nonatomic) NSString *nvr_nid_ses;
 //@property (nonatomic) NSString *nvr_nwb;
 //@property (nonatomic) long long nvr_timestamp;
+
+//인앱메세지
+@property (nonatomic) NSString *alreadySeenCampaignId;
+@property (nonatomic) NSString *inamId;
+@property (nonatomic) long long inamClkTime;
+@property (nonatomic) long long inamExpireTime;
+
+// ATTAuthStatus
+@property (nonatomic) NSInteger ATTAuthStatus;
+
+//SKAdNetwork conversion value
+@property (nonatomic) NSInteger latestSkAdCurValue;
 
 + (instancetype)sharedInstance;
 + (instancetype)getSharedInstance;
